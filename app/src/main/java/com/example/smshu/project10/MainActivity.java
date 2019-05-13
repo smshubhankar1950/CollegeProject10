@@ -179,6 +179,11 @@ public class MainActivity extends Activity {
                 double neutral = emotion.neutral;
                 double sad = emotion.sadness;
 
+                String s= compare(anger,happy,neutral,sad);
+
+                Intent intent = new Intent(this,Music.class);
+                intent.putExtra("EMOTION",s);
+                startActivity(intent);
                 String text =" age: "+ age +"\n anger: " + anger + "\n Happiness: " + happy + "\n neutral: " + neutral+"\n Sadness: "+ sad;
 
                 arr[i]= text;
@@ -196,6 +201,29 @@ public class MainActivity extends Activity {
 
         }
         return bitmap;
+    }
+
+    private String compare(double anger, double happy, double neutral, double sad) {
+
+         String max;
+        if(anger>happy&&anger>neutral&&anger>sad)
+        {
+            max="anger";
+        }
+        else if(happy>anger&&happy>neutral&&happy>sad)
+        {
+            max="happy";
+        }
+        else if (neutral>anger&&neutral>happy&&neutral>sad)
+        {
+            max="neutral";
+        }
+        else
+        {
+            max="sad";
+        }
+
+        return max;
     }
 
 }
